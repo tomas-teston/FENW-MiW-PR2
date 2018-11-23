@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {SliderbarComponent} from '../sliderbar/sliderbar.component';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() sliderbar: SliderbarComponent;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toogle() {
+    this.sliderbar.toggledSlider();
   }
 
 }

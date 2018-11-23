@@ -1,14 +1,14 @@
-import { NgModule } from '../../../node_modules/@angular/core';
-import { SliderbarDirective } from './sliderbar.directive';
-import { CommonModule } from '../../../node_modules/@angular/common';
+import { NgModule } from '@angular/core';
+import { MenuDirective } from './menu.directive';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    SliderbarDirective
+    MenuDirective
   ],
   exports: [
     CommonModule,
-    SliderbarDirective
+    MenuDirective
   ]
 })
 export class SharedModule {}

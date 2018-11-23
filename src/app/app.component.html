@@ -1,5 +1,5 @@
-<app-header [sliderbar]="sliderbar"></app-header>
-<app-sliderbar #sliderbar></app-sliderbar>
+<app-header (toggle)="toggleSideBar()"></app-header>
+<app-sliderbar [isOpen]="sideBarIsOpened"></app-sliderbar>
 <div  class="panels">
     <div class="main">
         <router-outlet></router-outlet>

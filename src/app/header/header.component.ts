@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {SliderbarComponent} from '../sliderbar/sliderbar.component';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +7,14 @@ import {SliderbarComponent} from '../sliderbar/sliderbar.component';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() sliderbar: SliderbarComponent;
+  @Output() toggle: EventEmitter<null> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   toogle() {
-    this.sliderbar.toggledSlider();
+    this.toggle.emit();
   }
 
 }

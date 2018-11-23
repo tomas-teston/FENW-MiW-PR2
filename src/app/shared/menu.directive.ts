@@ -1,9 +1,9 @@
 import { Directive, HostListener, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[appSliderbar]'
+  selector: '[appMenu]'
 })
-export class SliderbarDirective {
+export class MenuDirective {
   @HostBinding('class.on') isOpen = false;
 
   @HostListener('click') toogleOpen() {

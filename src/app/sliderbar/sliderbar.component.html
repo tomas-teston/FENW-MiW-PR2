@@ -1,0 +1,11 @@
+<div id="wrapper" [ngClass]="{ 'toggled': getToggled() }">
+    <div id="sidebar-wrapper" class="slidebar">
+        <ul class="sidebar-nav">
+            <ng-container *ngFor="let tab of data; let i = index">
+              <li routerLink="{{tab.urlLink}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a *ngIf="tab.show" name="{{tab.name}}" (click)="changeActive(i)"><i class="{{tab.classIcon}}"></i>{{tab.labelText}}</a>
+              </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

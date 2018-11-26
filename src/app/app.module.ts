@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SliderbarComponent } from './sliderbar/sliderbar.component';
 import { SharedModule } from './shared/shared.module';
 import { ServicesComponent } from './services/services.component';
+import { InstalacionesComponent } from './instalaciones/instalaciones.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ServicesComponent } from './services/services.component';
     HeaderComponent,
     FooterComponent,
     SliderbarComponent,
-    ServicesComponent
+    ServicesComponent,
+    InstalacionesComponent
   ],
   imports: [
     BrowserModule,

@@ -7,14 +7,6 @@ body {
 	height: 100%;
 }
 
-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-}
-
 .img-logo {
 	border-radius: 2px;
 	text-align: center;
@@ -95,10 +87,10 @@ li {
 .slidebar ul a:hover{
 	-webkit-transition: -webkit-transform 1s cubic-bezier(0, 0, .2, 1);
 }
-.slidebar li:hover a, li#active{
+.slidebar li:hover a, li.active{
 	background-color: #1f78cb96;
 }
-.slidebar li:hover i, li#active i{
+.slidebar li:hover i, li.active i{
 	color: #c6e8fd;
 }
 .slidebar li:focus i {

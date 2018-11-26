@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SliderbarComponent } from './sliderbar/sliderbar.component';
 import { SharedModule } from './shared/shared.module';
+import { ServicesComponent } from './services/services.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    SliderbarComponent
+    SliderbarComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,

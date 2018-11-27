@@ -1,6 +1,7 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,15 @@ export class LoginService {
   private modeLogin = false;
   private modeLoginChange: Subject<boolean> = new Subject();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
 
   doLogin(username, password) {
     return this.http.get(this.baseurl + '/users/login?username=' + username + '&password=' + password, {observe: 'response'});
   }
 
   isLogin() {
-    return (sessionStorage.getItem('token') !== null);
+    const token = sessionStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   doLogout() {
@@ -32,6 +34,5 @@ export class LoginService {
   changeMode() {
     this.modeLogin = !this.modeLogin;
     this.modeLoginChange.next(this.modeLogin);
-    // this.modeLoginChange.emit(this.isLogin());
   }
 }

@@ -17,13 +17,17 @@ import { LoginComponent } from './auth/login/login.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './shared/services/login.service';
+import { LogoutComponent } from './auth/logout/logout.component';
+
+// JwT Auth
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
 // Toast
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ToastrModule } from 'ngx-toastr';
-import { LogoutComponent } from './auth/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -46,9 +50,16 @@ import { LogoutComponent } from './auth/logout/logout.component';
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return sessionStorage.getItem('token');
+        }
+      }
+    })
   ],
-  providers: [LoginService],
+  providers: [LoginService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

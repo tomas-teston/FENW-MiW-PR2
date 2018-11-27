@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.service';
 
 import { HomeComponent } from './core/home/home.component';
 import { ServicesComponent } from './panels/services/services.component';
@@ -12,7 +13,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'services', component: ServicesComponent, pathMatch: 'full'},
   {path: 'instalaciones', component: InstalacionesComponent, pathMatch: 'full'},
-  {path: 'reservas', component: ReservasComponent, pathMatch: 'full'},
+  {path: 'reservas', component: ReservasComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent, pathMatch: 'full'},
   {path: 'logout', component: LogoutComponent, pathMatch: 'full'},
   {path: '**', redirectTo: '/'}

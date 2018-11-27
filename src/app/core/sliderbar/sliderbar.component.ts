@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {LoginService} from '../../shared/services/login.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-sliderbar',
   templateUrl: './sliderbar.component.html',
   styleUrls: ['./sliderbar.component.css']
 })
-export class SliderbarComponent {
+export class SliderbarComponent implements OnInit, OnDestroy {
   @Input() isOpen: boolean;
-  @Output() changeActiveEvent: EventEmitter<null> = new EventEmitter();
+  @Input() modeLogin: false;
+  subscription: Subscription;
 
   data: Array<{urlLink: string, classTab: string, name: string, classIcon: string, labelText: string, show: boolean}> = [
     {
@@ -36,7 +38,7 @@ export class SliderbarComponent {
       show: true
     },
     {
-      urlLink: '/',
+      urlLink: '/reservas',
       classTab: 'tabReservar',
       name: 'panelReservas',
       classIcon: 'far fa-calendar-alt',
@@ -44,7 +46,7 @@ export class SliderbarComponent {
       show: true
     },
     {
-      urlLink: '/',
+      urlLink: '/login',
       classTab: 'tabLogin',
       name: 'panelLogin',
       classIcon: 'fa fa-user',
@@ -52,7 +54,7 @@ export class SliderbarComponent {
       show: true
     },
     {
-      urlLink: '/',
+      urlLink: '/logout',
       classTab: 'tabLogout',
       name: 'panelUnlogin',
       classIcon: 'fa fa-power-off',
@@ -61,10 +63,41 @@ export class SliderbarComponent {
     }
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private loginService: LoginService) {}
 
   getToggled() {
     return this.isOpen;
+  }
+
+  modeLoginEvent() {
+    this.data.map((elem) => {
+      if (elem.name === 'panelLogin') {
+        elem.show = false;
+      } else if (elem.name === 'panelUnlogin') {
+        elem.show = true;
+      }
+      return elem;
+    });
+  }
+
+  modeNoLoginEvent() {
+    this.data.map((elem) => {
+      if (elem.name === 'panelLogin') {
+        elem.show = true;
+      } else if (elem.name === 'panelUnlogin') {
+        elem.show = false;
+      }
+      return elem;
+    });
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.loginService.getChangeModeObservable()
+      .subscribe(item => (item) ? this.modeLoginEvent() : this.modeNoLoginEvent());
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

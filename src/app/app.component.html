@@ -1,5 +1,5 @@
 <app-header (toggle)="toggleSideBar()"></app-header>
-<app-sliderbar [isOpen]="sideBarIsOpened"></app-sliderbar>
+<app-sliderbar [isOpen]="sideBarIsOpened" (doLogout)="doLogout()"></app-sliderbar>
 <div  class="panels">
     <div class="main">
       <section id="panel">

@@ -3,14 +3,27 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { SliderbarComponent } from './sliderbar/sliderbar.component';
+import { HomeComponent } from './core/home/home.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { SliderbarComponent } from './core/sliderbar/sliderbar.component';
 import { SharedModule } from './shared/shared.module';
-import { ServicesComponent } from './services/services.component';
-import { InstalacionesComponent } from './instalaciones/instalaciones.component';
+import { ServicesComponent } from './panels/services/services.component';
+import { InstalacionesComponent } from './panels/instalaciones/instalaciones.component';
+import { ReservasComponent } from './panels/reservas/reservas.component';
+import { LoginComponent } from './auth/login/login.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from './shared/services/login.service';
+
+// Toast
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +33,22 @@ import { InstalacionesComponent } from './instalaciones/instalaciones.component'
     FooterComponent,
     SliderbarComponent,
     ServicesComponent,
-    InstalacionesComponent
+    InstalacionesComponent,
+    ReservasComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

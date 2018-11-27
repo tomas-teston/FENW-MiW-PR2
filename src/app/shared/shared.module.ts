@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MenuDirective } from './menu.directive';
+import { MenuDirective } from './directives/menu.directive';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

@@ -1,0 +1,17 @@
+<div class="container">
+    <div id="panel_login">
+        <h2 class="header">Login:</h2>
+        <form class="form-signin" (ngSubmit)="onLogin(f)" #f="ngForm" >
+          <div class="row">
+            <div class="col-md-4 col-xs-8">
+              <label class="login_usuario" >Usuario:</label>
+              <input type="text" class="form-control" id="login_usuario" name="usuario" ngModel>
+              <label class="input_password" >Contraseña: </label>
+              <input type="password" class="form-control" id="password_login" name="password" ngModel>
+            </div>
+          </div>
+          <button id="boton_login" type="submit" class="btn btn-primary"><span id="icon_login" class="glyphicon glyphicon-user"></span>Identificarse</button>
+        </form>
+        <p id="crear_cuenta">Crear nueva cuenta</p>
+    </div>
+</div>

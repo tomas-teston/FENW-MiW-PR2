@@ -55,6 +55,7 @@
 
 .sidebar-nav li {
   line-height: 40px;
+  cursor: pointer;
 }
 
 .sidebar-nav li a {

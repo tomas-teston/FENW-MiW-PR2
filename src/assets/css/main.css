@@ -7,6 +7,10 @@ body {
 	height: 100%;
 }
 
+.footer-row {
+  display: block !important;
+}
+
 .img-logo {
 	border-radius: 2px;
 	text-align: center;
@@ -144,6 +148,7 @@ hr {
 }
 
 .img-background {
+  width: 100%;
 	background: url("../img/red.jpg") no-repeat;
 	background-size: cover;
 	color: white !important;

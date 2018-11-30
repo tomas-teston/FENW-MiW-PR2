@@ -16,7 +16,7 @@ import { ReservasComponent } from './panels/reservas/reservas.component';
 import { LoginComponent } from './auth/login/login.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from './shared/services/login.service';
+import { AuthService } from './shared/services/auth.service';
 import { LogoutComponent } from './auth/logout/logout.component';
 
 // JwT Auth
@@ -27,6 +27,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SigninComponent } from './auth/signin/signin.component';
+import {AuthGuardServiceNegative} from './shared/services/auth-guard-negative.service';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     InstalacionesComponent,
     ReservasComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { ToastrModule } from 'ngx-toastr';
       }
     })
   ],
-  providers: [LoginService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, AuthGuardServiceNegative],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

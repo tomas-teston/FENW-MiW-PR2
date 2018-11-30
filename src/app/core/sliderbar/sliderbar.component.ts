@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {LoginService} from '../../shared/services/login.service';
+import {AuthService} from '../../shared/services/auth.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -63,7 +63,7 @@ export class SliderbarComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: AuthService) {}
 
   getToggled() {
     return this.isOpen;
@@ -92,6 +92,7 @@ export class SliderbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    (this.loginService.isLogin()) ? this.modeLoginEvent() : this.modeNoLoginEvent();
     this.subscription = this.loginService.getChangeModeObservable()
       .subscribe(item => (item) ? this.modeLoginEvent() : this.modeNoLoginEvent());
   }

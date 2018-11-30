@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
   private baseurl = 'http://fenw.etsisi.upm.es:5555';
   private modeLogin = false;
   private modeLoginChange: Subject<boolean> = new Subject();
@@ -34,5 +35,16 @@ export class LoginService {
   changeMode() {
     this.modeLogin = !this.modeLogin;
     this.modeLoginChange.next(this.modeLogin);
+  }
+
+  getUser(username: string) {
+    return this.http.get(this.baseurl + '/users/' + username);
+  }
+
+  registerUser(user: User) {
+    return this.http.post(this.baseurl + '/users', user, {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      observe: 'response'
+    });
   }
 }

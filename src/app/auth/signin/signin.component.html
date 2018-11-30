@@ -1,0 +1,39 @@
+<div class="container">
+  <div id="panel_registro">
+      <h2 class="header">Nuevo usuario:</h2>
+      <form class="form-signin" (ngSubmit)="onSignin(f)" #f="ngForm" >
+        <div class="row">
+            <div class="col-md-4 col-xs-8">
+                <div class="form-horizontal_regis">
+                    <div class="form-group">
+                        <label class="input_reg_usuario" >*Usuario: </label>
+                        <input type="text" class="form-control" id="reg_usuario" name="usuario"
+                          ngModel
+                          [ngClass]="{ 'error': errorUsuario }"
+                          (blur)="checkUsername(f)"
+                          >
+                    </div>
+                    <div class="form-group">
+                        <label class="input_reg_email" >*Correo: </label>
+                        <input type="text" class="form-control" id="reg_email" name="correo" ngModel [ngClass]="{ 'error': errorCorreo }">
+                    </div>
+                    <div class="form-group">
+                        <label class="input_reg_password" >*Contraseña: </label>
+                        <input type="password" class="form-control" id="reg_password" name="password" ngModel [ngClass]="{ 'error': errorPassword }">
+                    </div>
+                    <div class="form-group">
+                        <label class="input_reg_password" >*Repite contraseña: </label>
+                        <input type="password" class="form-control" id="reg_password2" name="password_rep" ngModel [ngClass]="{ 'error': errorPassword }">
+                    </div>
+                    <div class="form-group">
+                        <label class="input_reg_fecha_nacimiento" >Fecha_nacimiento: </label>
+                        <input type="date" class="form-control" id="reg_fecha_nacimiento" name="fecha_nac">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button [disabled]="!userUnique" id="boton_nuevo_usuario" type="submit" class="btn btn-primary"><span id="icon_regis" class="glyphicon glyphicon-user"></span>Crear nuevo usuario</button>
+        <p [routerLink]="['/login']" id="volver_login">Volver a login</p>
+      </form>
+  </div>
+</div>

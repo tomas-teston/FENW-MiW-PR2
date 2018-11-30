@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../shared/services/login.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import {ToastErrorSettings} from '../../shared/config/configToastError.model';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-logout',
@@ -9,9 +11,10 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.toastr.success('Esperamos verte pronto', 'Adios', ToastErrorSettings.TOAST_ERROR_SETINGS);
     this.loginService.doLogout();
     this.router.navigate(['/']);
   }

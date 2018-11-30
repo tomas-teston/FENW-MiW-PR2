@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from './shared/services/login.service';
+import {AuthService} from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
 
   sideBarIsOpened: boolean;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: AuthService) {}
 
   toggleSideBar() {
     this.sideBarIsOpened = !this.sideBarIsOpened;

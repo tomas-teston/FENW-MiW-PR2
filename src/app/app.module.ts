@@ -30,7 +30,11 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SigninComponent } from './auth/signin/signin.component';
-import {AuthGuardServiceNegative} from './shared/services/auth-guard-negative.service';
+import { AuthGuardServiceNegative } from './shared/services/auth-guard-negative.service';
+
+// Bootstrap 4 componets
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminReservasComponent } from './panels/reservas/admin-reservas/admin-reservas.component';
 
 
 @NgModule({
@@ -57,6 +61,7 @@ import {AuthGuardServiceNegative} from './shared/services/auth-guard-negative.se
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
+    NgbModule,
     ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {

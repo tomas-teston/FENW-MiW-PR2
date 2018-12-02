@@ -1,3 +1,16 @@
-<p>
-  reservas works!
-</p>
+<div class="container">
+    <div id="panel_login">
+        <h2 *ngIf="!selectedDate" class="header">Seleccione una fecha para realizar una reserva</h2>
+        <div class="form-signin" *ngIf="!selectedDate">
+          <div class="row">
+            <div class="col-md-4 col-xs-8">
+              <ngb-datepicker #dp (navigate)="date = $event.next" name="dateReserve" [(ngModel)]="model" [minDate]="minDate"></ngb-datepicker>
+            </div>
+          </div>
+          <button id="boton_datepicker" type="button" class="btn btn-primary" (click)="onReservation()">
+            <span id="icon_login" class="glyphicon glyphicon-user"></span>Realizar reserva
+          </button>
+        </div>
+        <app-admin-reservas (back)="back()" [dateToISO]="dateToISO" *ngIf="selectedDate"></app-admin-reservas>
+    </div>
+</div>

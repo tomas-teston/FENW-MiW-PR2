@@ -7,95 +7,20 @@
             <h3>Clases</h3>
             <hr>
             <img class="img-servicios" src="../../../assets/img/clases.jpg" alt="imagen-clases">
-            <table class="table table-services">
-                <thead>
-                <tr>
-                    <th scope="col">Horas/semana</th>
-                    <th scope="col">Socios</th>
-                    <th scope="col">No socios</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>50€</td>
-                    <td>60€</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>70€</td>
-                    <td>80€</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>90€</td>
-                    <td>100€</td>
-                </tr>
-                </tbody>
-            </table>
+            <app-data-table [dataModel]="dataClases"></app-data-table>
         </div>
         <div class="col-md-4 text-center">
             <h3>Competición</h3>
             <hr>
             <img class="img-servicios" src="../../../assets/img/competicion.jpg" alt="imagen-competicion">
-            <table class="table table-services">
-                <thead>
-                <tr>
-                    <th scope="col">Horas/semana</th>
-                    <th scope="col">Socios</th>
-                    <th scope="col">No socios</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>150€</td>
-                    <td>160€</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>170€</td>
-                    <td>180€</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>190€</td>
-                    <td>220€</td>
-                </tr>
-                </tbody>
-            </table>
+            <app-data-table [dataModel]="dataCompeticion"></app-data-table>
 
         </div>
         <div class="col-md-4 text-center">
             <h3>Alquiler pistas</h3>
             <hr>
             <img class="img-servicios" src="../../../assets/img/alquiler.png" alt="imagen-alquiler">
-            <table class="table table-services">
-                <thead>
-                <tr>
-                    <th scope="col">Horas</th>
-                    <th scope="col">Socios</th>
-                    <th scope="col">No socios</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>5€</td>
-                    <td>7€</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>7€</td>
-                    <td>10€</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>10€</td>
-                    <td>12€</td>
-                </tr>
-                </tbody>
-            </table>
+            <app-data-table [dataModel]="dataPista"></app-data-table>
         </div>
     </div>
 </div>

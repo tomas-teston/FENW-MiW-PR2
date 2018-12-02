@@ -18,6 +18,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './shared/services/auth.service';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { DataTableComponent } from './shared/components/data-table/data-table.component';
+
 
 // JwT Auth
 import { AuthGuardService } from './shared/services/auth-guard.service';
@@ -43,7 +45,9 @@ import {AuthGuardServiceNegative} from './shared/services/auth-guard-negative.se
     ReservasComponent,
     LoginComponent,
     LogoutComponent,
-    SigninComponent
+    SigninComponent,
+    AdminReservasComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,

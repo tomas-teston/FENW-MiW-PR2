@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-data-table',
@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class DataTableComponent implements OnInit {
   @Input() dataModel;
+  @HostBinding('class.text_center') @Input() isTextCenter: boolean;
 
   constructor() { }
 

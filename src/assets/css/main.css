@@ -284,3 +284,40 @@ hr {
   width: 235px;
 }
 
+.text_center {
+  text-align: center;
+}
+
+.card-pista {
+  background: white;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 4px 9px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 4px 9px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 4px 9px rgba(0, 0, 0, 0.1);
+  margin: 30px 2% 30px 0px;
+  padding-top: 15px;
+
+  flex: 0 0 23% !important;
+
+}
+
+@media only screen and (max-width: 767px) {
+  .card-pista {
+    flex: 0 0 100% !important;
+  }
+}
+
+.reservar-button {
+  width: 135px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  .reservar-button {
+    width: 135px;
+    margin-bottom: 0;
+    margin-right: 2%;
+  }
+  .botonera_reserva {
+    margin-top: 2%;
+  }
+}

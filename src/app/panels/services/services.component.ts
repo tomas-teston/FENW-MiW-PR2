@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataTableModel} from '../../shared/models/dataTable.model';
 
 @Component({
   selector: 'app-services',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-  dataClases = {
-    headValues: ['Horas/semana', 'Socio', 'No Socio'],
-    content: [
+
+  dataClases: DataTableModel = new DataTableModel(
+    ['Horas/semana', 'Socio', 'No Socio'],
+    [
       {
         nameRow: '1',
         infoRow: ['50€', '60€']
@@ -22,11 +24,11 @@ export class ServicesComponent implements OnInit {
         infoRow: ['90€', '100€']
       }
     ]
-  };
+  );
 
-  dataCompeticion = {
-    headValues: ['Horas/semana', 'Socio', 'No Socio'],
-    content: [
+  dataCompeticion: DataTableModel = new DataTableModel(
+    ['Horas/semana', 'Socio', 'No Socio'],
+    [
       {
         nameRow: '1',
         infoRow: ['150€', '160€']
@@ -40,11 +42,11 @@ export class ServicesComponent implements OnInit {
         infoRow: ['190€', '200€']
       }
     ]
-  };
+  );
 
-  dataPista = {
-    headValues: ['Horas', 'Socio', 'No Socio'],
-    content: [
+  dataPista: DataTableModel = new DataTableModel(
+    ['Horas', 'Socio', 'No Socio'],
+    [
       {
         nameRow: '1',
         infoRow: ['5€', '7€']
@@ -58,11 +60,10 @@ export class ServicesComponent implements OnInit {
         infoRow: ['10€', '12€']
       }
     ]
-  };
+  );
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

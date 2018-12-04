@@ -1,2 +1,69 @@
-<h2 class="header">Seleccione pista y hora de la reserva</h2>
-<button id="boton_cambiar_fecha" type="button" class="btn btn-primary" (click)="goBack()"><span id="icon_login" class="glyphicon glyphicon-user"></span>Cambiar fecha</button>
+<h2 class="header">Seleccione pista y hora de la reserva para el día - {{printDate()}}</h2>
+<div class="row">
+  <div class="col-md-3 col-xs-12 card-pista">
+    <h4 class="text-center">Reservas en pista 1</h4>
+    <hr>
+    <app-data-table *ngIf="pista1State.content.length > 0" [dataModel]="pista1State" [isTextCenter]="true"></app-data-table>
+    <ng-container *ngIf="pista1State.content.length === 0" >
+      <h4 class="text_center">*Sin reservas*</h4>
+    </ng-container>
+  </div>
+  <div class="col-md-3 col-xs-12 card-pista">
+    <h4 class="text-center">Reservas en pista 2</h4>
+    <hr>
+    <app-data-table *ngIf="pista2State.content.length > 0" [dataModel]="pista2State" [isTextCenter]="true"></app-data-table>
+    <ng-container *ngIf="pista2State.content.length === 0" >
+      <h4 class="text_center">*Sin reservas*</h4>
+    </ng-container>
+  </div>
+  <div class="col-md-3 col-xs-12 card-pista">
+    <h4>Reservas en pista 3</h4>
+    <hr>
+    <app-data-table *ngIf="pista3State.content.length > 0" [dataModel]="pista3State" [isTextCenter]="true"></app-data-table>
+    <ng-container *ngIf="pista3State.content.length === 0" >
+      <h4 class="text_center">*Sin reservas*</h4>
+    </ng-container>
+  </div>
+  <div class="col-md-3 col-xs-12 card-pista">
+    <h4 class="text-center">Reservas en pista 4</h4>
+    <hr>
+    <app-data-table *ngIf="pista4State.content.length > 0" [dataModel]="pista4State" [isTextCenter]="true"></app-data-table>
+    <ng-container *ngIf="pista4State.content.length === 0" >
+      <h4 class="text_center">*Sin reservas*</h4>
+    </ng-container>
+  </div>
+</div>
+<div class="row justify-content-between">
+  <div class="col-md-4 col-xs-12">
+    <h4 class="text-center">Mis reservas</h4>
+    <hr>
+    <app-data-table *ngIf="myReservesDataTable.content.length > 0" [dataModel]="myReservesDataTable"></app-data-table>
+    <ng-container *ngIf="myReservesDataTable.content.length === 0" >
+      <h4>*Sin reservas*</h4>
+    </ng-container>
+  </div>
+  <div class="col-md-8 col-xs-12">
+      <h4 class="text-center">Nueva reserva | {{printDate()}}</h4>
+      <hr>
+      <form [formGroup]="reserveForm">
+        <div class="row justify-content-center">
+          <div class="col-md-4 col-xs-12">
+            <label>Pista:</label>
+            <select #t (change)="changePista(t.value)"  class="form-control" formControlName="pista">
+              <option [value]="pista" *ngFor="let pista of pistas">{{pista}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label>Horas:</label>
+            <select class="form-control" formControlName="hora">
+              <option [value]="hora" *ngFor="let hora of horas">{{hora}}</option>
+            </select>
+          </div>
+          <div class="col-md-4 col-xs-12 botonera_reserva">
+            <button (click)="onReserve()" type="button" class="btn btn-primary reservar-button"><span id="icon_reserve" class="glyphicon glyphicon-user"></span>Reservar</button>
+            <button id="boton_cambiar_fecha" type="button" class="btn btn-primary" (click)="goBack()"><span id="icon_login" class="glyphicon glyphicon-user"></span>Cambiar fecha</button>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>

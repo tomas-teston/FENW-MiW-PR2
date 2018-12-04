@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { HomeComponent } from './core/home/home.component';
 import { HeaderComponent } from './core/header/header.component';
@@ -14,6 +14,8 @@ import { ServicesComponent } from './panels/services/services.component';
 import { InstalacionesComponent } from './panels/instalaciones/instalaciones.component';
 import { ReservasComponent } from './panels/reservas/reservas.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AdminReservasComponent } from './panels/reservas/admin-reservas/admin-reservas.component';
+import { ReservesService } from './shared/services/reserves.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './shared/services/auth.service';
@@ -34,7 +36,6 @@ import { AuthGuardServiceNegative } from './shared/services/auth-guard-negative.
 
 // Bootstrap 4 componets
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AdminReservasComponent } from './panels/reservas/admin-reservas/admin-reservas.component';
 
 
 @NgModule({
@@ -69,9 +70,10 @@ import { AdminReservasComponent } from './panels/reservas/admin-reservas/admin-r
           return sessionStorage.getItem('token');
         }
       }
-    })
+    }),
+    ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService, AuthGuardServiceNegative],
+  providers: [AuthService, AuthGuardService, AuthGuardServiceNegative, ReservesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

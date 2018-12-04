@@ -14,12 +14,11 @@ import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 export class AdminReservasComponent implements OnInit {
   @Input() dateToISO: number;
   @Output() back: EventEmitter<null> = new EventEmitter();
-  dateConvert: Date;
 
   allReservationsAllUsers: Reservation[] = [];
   myReservations: Reservation[] = [];
 
-  myReservesDataTable: DataTableModel = new DataTableModel(['', 'Pista', 'Hora'], []);
+  myReservesDataTable: DataTableModel = new DataTableModel(['', 'Pista', 'Fecha', 'Hora'], []);
   pista1State: DataTableModel = new DataTableModel(['', 'Hora'], []);
   pista2State: DataTableModel = new DataTableModel(['', 'Hora'], []);
   pista3State: DataTableModel = new DataTableModel(['', 'Hora'], []);
@@ -32,8 +31,6 @@ export class AdminReservasComponent implements OnInit {
   constructor(private reservesService: ReservesService, private toastr: ToastrService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dateConvert = new Date(this.dateToISO);
-    debugger;
     this.reserveForm = new FormGroup({
       pista: new FormControl(),
       hora: new FormControl()
@@ -55,6 +52,7 @@ export class AdminReservasComponent implements OnInit {
     this.reservesService.getAllReservationsByLogedUser().subscribe(
       resp => {
         if (resp) {
+          this.myReservations = [];
           resp.body.forEach((elem) => {
             this.myReservations.push(elem);
           });
@@ -73,6 +71,7 @@ export class AdminReservasComponent implements OnInit {
     this.reservesService.getAllReservationsByAllUsersInDate(this.dateToISO).subscribe(
       resp => {
         if (resp) {
+          this.allReservationsAllUsers = [];
           resp.body.forEach((elem) => {
             this.allReservationsAllUsers.push(elem);
           });
@@ -88,6 +87,10 @@ export class AdminReservasComponent implements OnInit {
   }
 
   parseAllReservesByAllUsers(reservations: Reservation[]) {
+    this.pista1State.content = [];
+    this.pista2State.content = [];
+    this.pista3State.content = [];
+    this.pista4State.content = [];
     this.allReservationsAllUsers.forEach((reserve) => {
       if (reserve.courtId === 1) {
         this.pista1State.content.push({
@@ -115,17 +118,18 @@ export class AdminReservasComponent implements OnInit {
   }
 
   parseMyReserveToDataTable(reservations: Reservation[]) {
+    this.myReservesDataTable.content = [];
     this.myReservations.forEach(reserve => {
       this.myReservesDataTable.content.push({
         nameRow: '',
-        infoRow: [reserve.courtId, reserve.rsvtime]
+        infoRow: [reserve.courtId, reserve.rsvday, reserve.rsvtime]
       });
     });
   }
 
   loadHours(pista: string) {
     this.horas = [];
-    for (let i = 10; i < 23; i++) {
+    for (let i = 10; i < 22; i++) {
       this.horas.push(i.toString() + ':00');
     }
     this.allReservationsAllUsers.forEach((reservation) => {
@@ -133,6 +137,15 @@ export class AdminReservasComponent implements OnInit {
         this.horas.splice(this.horas.indexOf(reservation.rsvtime), 1);
       }
     });
+
+    // Check is today.
+    const today = new Date().setHours(0, 0, 0, 0);
+    if (today === this.dateToISO) {
+      for (let i = new Date().getHours(); i > 9; i--) {
+        this.horas.splice(this.horas.indexOf(i.toString() + ':00'), 1);
+      }
+    }
+
     this.reserveForm.controls['hora'].patchValue(this.horas[0]);
   }
 
@@ -145,7 +158,31 @@ export class AdminReservasComponent implements OnInit {
   }
 
   onReserve() {
-    debugger;
+    const date = new Date(this.dateToISO);
+    date.setHours(Number(this.reserveForm.value.hora.split(':')[0]));
+    this.reservesService.registerReserve(Number(this.reserveForm.value.pista), date.getTime()).subscribe(
+      resp => {
+        if (resp) {
+          if (resp.status === 201) {
+            this.toastr.success('Reserva realizada.', 'Pista: ' + this.reserveForm.value.pista +
+              ' | Hora: ' + this.reserveForm.value.hora, ToastErrorSettings.TOAST_ERROR_SETINGS);
+            this.getAllReservationsByLogedUser();
+            this.getAllReservationsByAllUsersInDate();
+          }
+        } else {
+          this.toastr.error('Error al registrar usuario', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.toastr.error('Error en los datos enviados', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+        } else if (error.status === 409) {
+          this.toastr.error('Máximo 4 reservas', 'Se ha superado el límite de reservas', ToastErrorSettings.TOAST_ERROR_SETINGS);
+        } else if (error.status === 500) {
+          this.toastr.error('Error, contacte con el administrador del sistema.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+        }
+      }
+    );
   }
 
   printDate() {
@@ -158,7 +195,7 @@ export class AdminReservasComponent implements OnInit {
       dd = '0' + dd;
     }
 
-    if((today.getMonth() + 1) < 10) {
+    if ((today.getMonth() + 1) < 10) {
       mm = '0' + mm;
     }
 

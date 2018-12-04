@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   changeMode() {
-    this.modeLogin = !this.modeLogin;
+    this.modeLogin = this.isLogin();
     this.modeLoginChange.next(this.modeLogin);
   }
 

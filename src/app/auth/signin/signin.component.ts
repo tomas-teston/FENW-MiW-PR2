@@ -30,6 +30,9 @@ export class SigninComponent {
     this.user.passwordRepeated = form.value.password_rep;
     this.user.birthdate = new Date(form.value.fecha_nac).getTime();
 
+    this.errorUsuario = false;
+    this.errorCorreo = false;
+    this.errorPassword = false;
 
     if (this.user.username.length === 0) {
       this.errorUsuario = true;
@@ -37,6 +40,9 @@ export class SigninComponent {
     } else if (this.user.email.length === 0) {
       this.errorCorreo = true;
       this.toastr.error('Introduce correo', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+    } else if (!this.checkEmail(this.user.email)) {
+      this.errorCorreo = true;
+      this.toastr.error('Correo no válido', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
     } else if (this.user.password.length === 0 || this.user.passwordRepeated.length === 0) {
       this.errorPassword = true;
       this.toastr.error('Introduce contraseñas', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
@@ -51,18 +57,19 @@ export class SigninComponent {
             if (resp.status === 201) {
               this.toastr.success('Bienvenido ' + this.user.username, 'Registrado correctamente', ToastErrorSettings.TOAST_ERROR_SETINGS);
               this.router.navigate(['/login']);
-            } else if (resp.status === 400) {
-              this.toastr.error('Error en los datos enviados', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
-            } else if (resp.status === 409) {
-              this.toastr.error('Usuario ya en uso', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
-            } else if (resp.status === 500) {
-                this.toastr.error('Error, contacte con el administrador del sistema.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
             }
           } else {
             this.toastr.error('Error al registrar usuario', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
           }
         },
         error => {
+          if (error.status === 400) {
+            this.toastr.error('Error en los datos enviados', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          } else if (error.status === 409) {
+            this.toastr.error('Usuario ya en uso', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          } else if (error.status === 500) {
+            this.toastr.error('Error, contacte con el administrador del sistema.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          }
           this.toastr.error('Error al registrar usuario', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
         }
       );
@@ -91,6 +98,11 @@ export class SigninComponent {
         }
       }
     );
+  }
+
+  checkEmail(valor) {
+    const reg = /(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
+    return reg.test(valor);
   }
 
 }

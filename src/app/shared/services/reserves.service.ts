@@ -23,4 +23,14 @@ export class ReservesService {
       headers: new HttpHeaders({'Authorization': sessionStorage.getItem('token')})
     });
   }
+
+  registerReserve(courtId: number, rsvdatetime: number) {
+    return this.http.post(this.baseurl, {courtid: courtId, rsvdatetime: rsvdatetime}, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': sessionStorage.getItem('token')
+      }),
+      observe: 'response'
+    });
+  }
 }

@@ -55,12 +55,17 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <label>Horas:</label>
-            <select class="form-control" formControlName="hora">
-              <option [value]="hora" *ngFor="let hora of horas">{{hora}}</option>
-            </select>
+            <ng-container *ngIf="horas.length > 0">
+              <select class="form-control" formControlName="hora">
+                <option [value]="hora" *ngFor="let hora of horas">{{hora}}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngIf="horas.length === 0">
+              <p>*No hay horas disponibles*</p>
+            </ng-container>
           </div>
           <div class="col-md-4 col-xs-12 botonera_reserva">
-            <button (click)="onReserve()" type="button" class="btn btn-primary reservar-button"><span id="icon_reserve" class="glyphicon glyphicon-user"></span>Reservar</button>
+            <button (click)="onReserve()" [disabled]="horas.length === 0" type="button" class="btn btn-primary reservar-button"><span id="icon_reserve" class="glyphicon glyphicon-user"></span>Reservar</button>
             <button id="boton_cambiar_fecha" type="button" class="btn btn-primary" (click)="goBack()"><span id="icon_login" class="glyphicon glyphicon-user"></span>Cambiar fecha</button>
           </div>
         </div>

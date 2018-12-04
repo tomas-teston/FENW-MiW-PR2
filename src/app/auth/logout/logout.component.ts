@@ -14,7 +14,6 @@ export class LogoutComponent implements OnInit {
   constructor(private loginService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.toastr.success('Esperamos verte pronto', 'Adios', ToastErrorSettings.TOAST_ERROR_SETINGS);
     this.loginService.doLogout();
     this.router.navigate(['/']);
   }

@@ -39,7 +39,13 @@ export class LoginComponent {
           }
         },
         error => {
-          this.toastr.error('Tu usuario y/o contraseña son incorrectos.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          if (error.status === 400) {
+            this.toastr.error('Introduce usuario y contraseña.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          } else if (error.status === 401) {
+            this.toastr.error('Usuario y/o contraseña inválidos.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          } else if (error.status === 500) {
+            this.toastr.error('Pongase en contacto con el administrador del sistema.', 'Error', ToastErrorSettings.TOAST_ERROR_SETINGS);
+          }
         }
       );
     }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
-import {Observable} from 'rxjs';
-import {ToastrService} from 'ngx-toastr';
-import {ToastErrorSettings} from '../config/configToastError.model';
+import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { ToastErrorSettings } from '../config/configToastError.model';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {

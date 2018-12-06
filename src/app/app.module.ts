@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './core/home/home.component';
 import { HeaderComponent } from './core/header/header.component';
@@ -16,23 +17,21 @@ import { ReservasComponent } from './panels/reservas/reservas.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AdminReservasComponent } from './panels/reservas/admin-reservas/admin-reservas.component';
 import { ReservesService } from './shared/services/reserves.service';
-
-import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './shared/services/auth.service';
+import { SigninComponent } from './auth/signin/signin.component';
 import { LogoutComponent } from './auth/logout/logout.component';
-import { DataTableComponent } from './shared/components/data-table/data-table.component';
+import { DataTableComponent } from './shared/components/dataTable/data-table.component';
 
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuardServiceNegative } from './shared/services/auth-guard-negative.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
 
 // JwT Auth
-import { AuthGuardService } from './shared/services/auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 
 // Toast
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { SigninComponent } from './auth/signin/signin.component';
-import { AuthGuardServiceNegative } from './shared/services/auth-guard-negative.service';
 
 // Bootstrap 4 componets
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

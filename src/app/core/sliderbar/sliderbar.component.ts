@@ -1,6 +1,6 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from '../../shared/services/auth.service';
-import {Subscription} from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sliderbar',

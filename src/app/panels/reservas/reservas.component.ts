@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CustomDatepickerI18n} from '../../shared/components/datePicker/CustomDatepickerI18n-service';
-import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
-import {I18n} from '../../shared/components/datePicker/I18n-service';
-import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { CustomDatepickerI18n } from '../../shared/components/datePicker/CustomDatepickerI18n-service';
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { I18n } from '../../shared/components/datePicker/I18n-service';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-reservas',

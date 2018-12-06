@@ -1,6 +1,6 @@
-import {NgbDatepickerI18n, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {Injectable} from '@angular/core';
-import {I18n} from './I18n-service';
+import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Injectable } from '@angular/core';
+import { I18n } from './I18n-service';
 
 const I18N_VALUES = {
   'es': {

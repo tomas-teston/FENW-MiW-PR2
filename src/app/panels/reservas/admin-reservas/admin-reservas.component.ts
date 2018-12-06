@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ReservesService } from '../../../shared/services/reserves.service';
 import { ToastErrorSettings } from '../../../shared/config/configToastError.model';
 import { ToastrService } from 'ngx-toastr';
 import { Reservation } from '../../../shared/models/reservation.model';
-import {DataTableModel} from '../../../shared/models/dataTable.model';
-import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
+import { DataTableModel } from '../../../shared/models/dataTable.model';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-reservas',
@@ -24,6 +24,7 @@ export class AdminReservasComponent implements OnInit {
   pista3State: DataTableModel = new DataTableModel(['', 'Hora'], []);
   pista4State: DataTableModel = new DataTableModel(['', 'Hora'], []);
 
+  // DTOS
   reserveForm: FormGroup;
   pistas = ['1', '2', '3', '4'];
   horas = [];

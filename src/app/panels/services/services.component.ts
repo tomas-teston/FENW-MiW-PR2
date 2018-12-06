@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataTableModel} from '../../shared/models/dataTable.model';
+import { DataTableModel } from '../../shared/models/dataTable.model';
 
 @Component({
   selector: 'app-services',

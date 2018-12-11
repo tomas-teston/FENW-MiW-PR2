@@ -149,7 +149,7 @@ hr {
 
 .img-background {
   width: 100%;
-  background: url("../img/red.jpg") no-repeat;
+  background: url("./assets/img/red.jpg") no-repeat;
   background-size: cover;
   color: white !important;
   border-radius: 2px !important;
